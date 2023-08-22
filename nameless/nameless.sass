@@ -1,0 +1,232 @@
+//Framework
+@use "sass:string"
+@use "sass:map"
+
+//Config
+$height: (max:1000,min:100,interval:100)
+$width: (max:1000,min:100,interval:100)
+$paddings: (max:100,min:50,interval:10,min_pr:0,max_pr:50)
+$margins: (max:100,min:50,interval:10,min_pr:0,max_pr:50)
+$gaps: (max:100,min:50,interval:10,min_pr:0,max_pr:10)
+$colors: (primary:#1c3d8dff)
+
+//Fuctions
+@function setFor($map,$mode)
+    @if $mode==1
+        @if map.get($map,"interval")==0
+            @return 0
+        @else
+            @return ( map.get($map,"max")- map.get($map,"min"))/map.get($map,"interval")+1
+    @else if $mode==2
+        @return ( map.get($map,"max_pr")- map.get($map,"min_pr"))/5
+
+@function increment($var,$map)
+    @return $var*map.get($map,"interval")
+
+//Display 
+.inline-block
+    display: inline-block
+    box-sizing: border-box
+.inline
+    display: inline
+    box-sizing: border-box
+
+.block
+    display: block
+    box-sizing: border-box
+
+//Sizes (width,heigth)
+
+@for $h from 1 through setFor($height,1)
+    $h:increment($h,$height)
+    @for $w from 1 through setFor($width,1)
+        $w:increment($w,$width)
+        .s-#{$w}-#{$h}-px
+            width: #{$w} + 'px'
+            height: #{$h} + 'px'
+
+    @for $w from 1 through 10
+        .s-#{$w*10}-#{$h}-pr
+            width: #{$w*10} + '%'
+            height: #{$h} + 'px'
+        
+
+    .s-full-#{$h}-px
+        width: 100%
+        height: #{$h} + 'px'
+    
+    .s-max-#{$h}-px
+        width: max-content
+        height: #{$h} + 'px'
+        
+    .s-min-#{$h}-px
+        width: min-content
+        height: #{$h} + 'px'
+
+.s-full-auto
+    width: 100%
+    height: auto
+
+@for $w from 1 through 10
+            .s-#{$w*10}-auto-pr
+                width: #{$w*10} + '%'
+                height: auto
+
+.s-max-auto
+    width: max-content
+    height: auto
+    
+.s-min-auto
+    width: min-content
+    height: auto
+
+.s-fit-auto
+    width: fit-content
+    height: auto
+
+//Flex box
+$flows: (row: r, row-reverse: rr, column: c, col-reverse: cr)
+$wrap: (wrap: w, nowrap: nw)
+$position: (flex-start: s, center: c, flex-end: e)
+
+
+@each $flow,$f in $flows //flex-flow
+    @each $wrap,$w in $wrap //flex-wrap
+        @each $jus,$j in $position //justify-contes
+            @each $ali,$a in $position //aling-items
+                .flex-#{$f}-#{$w}-#{$j}#{$a}
+                    display: flex
+                    flex-direction: $flow
+                    flex-wrap: $wrap 
+                    justify-content: $jus
+                    align-items: $ali 
+                    gap: 0
+                    
+                @for $gap from 1 through setFor($gaps,1)
+                    $gap:increment($gap,$gaps)
+                    .flex-#{$f}-#{$w}-#{$j}#{$a}-#{$gap}
+                        display: flex
+                        flex-direction: $flow
+                        flex-wrap: $wrap
+                        justify-content: $jus
+                        align-items: $ali 
+                        gap: #{$gap}+'px'
+
+                @for $gap from 1 through setFor($gaps,2)
+                    $gap:$gap*5
+                    .flex-#{$f}-#{$w}-#{$j}#{$a}-#{$gap}
+                        display: flex
+                        flex-direction: $flow
+                        flex-wrap: $wrap
+                        justify-content: $jus
+                        align-items: $ali 
+                        gap: #{$gap}+'%'        
+
+//Margin
+@for $m from 1 through setFor($margins,2)
+    $m:$m*5
+    .ml-#{$m}-pr
+        margin-left: #{$m}+'%'
+    .mb-#{$m}-pr
+        margin-bottom: #{$m}+'%'
+    .mr-#{$m}-pr
+        margin-right: #{$m}+'%'
+    .mt-#{$m}-pr
+        margin-top: #{$m}+'%'
+    .mx-#{$m}-pr
+        @extend .ml-#{$m}-pr
+        @extend .mr-#{$m}-pr
+
+@for $m from 1 through setFor($margins,1)
+    $m:increment($m,$margins)
+
+    .ml-#{$m}-px
+        margin-left: #{$m}+'px'
+    .mb-#{$m}-px
+        margin-bottom: #{$m}+'px'
+    .mr-#{$m}-px
+        margin-right: #{$m}+'px'
+    .mt-#{$m}-px
+        margin-top: #{$m}+'px'
+    .mx-#{$m}-px
+        @extend .ml-#{$m}-px
+        @extend .mr-#{$m}-px
+    .my-#{$m}-px
+        @extend .mt-#{$m}-px
+        @extend .mb-#{$m}-px
+
+.m-0
+    margin: 0
+
+//Padding
+@for $p from 1 through setFor($paddings,2)
+    $p:$p*5
+    .pl-#{$p}-pr
+        padding-left: #{$p}+'%'
+    .pb-#{$p}-pr
+        padding-bottom: #{$p}+'%'
+    .pr-#{$p}-pr
+        padding-right: #{$p}+'%'
+    .pt-#{$p}-pr
+        padding-top: #{$p}+'%'
+    .px-#{$p}-pr
+        @extend .pl-#{$p}-pr
+        @extend .pr-#{$p}-pr
+
+@for $p from 1 through setFor($paddings,1)
+    $p:increment($p,$paddings)
+
+    .pl-#{$p}-px
+        padding-left: #{$p}+'px'
+    .pb-#{$p}-px
+        padding-bottom: #{$p}+'px'
+    .pr-#{$p}-px
+        padding-right: #{$p}+'px'
+    .pt-#{$p}-px
+        padding-top: #{$p}+'px'
+    .px-#{$p}-px
+        @extend .pl-#{$p}-px
+        @extend .pr-#{$p}-px
+    .py-#{$p}-px
+        @extend .pt-#{$p}-px
+        @extend .pb-#{$p}-px
+
+.p-0
+    padding: 0
+
+//Scroll
+.non-scroll-x
+    overflow-x: hidden
+
+.non-scroll-y
+    overflow-y: hidden
+
+//Text
+.t-center
+    text-align: center
+    
+.t-rigth
+    text-align: right
+
+.t-left
+    text-align: left
+
+.t-underline
+    text-decoration: underline
+
+.t-bold
+    font-weight: 900
+
+//Colors
+@each $name,$code in $colors
+    //Texts
+    .t-#{$name}
+        color: $code
+    //Background
+    .bg-#{$name}
+        background-color: $code
+    //Border
+    .b-#{$name}
+        border-color: $code
+
+
