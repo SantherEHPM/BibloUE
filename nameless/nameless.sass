@@ -1,14 +1,17 @@
 //Framework
 @use "sass:string"
 @use "sass:map"
+@use "sass:color"
 
 //Config
 $height: (max:1000,min:100,interval:100)
 $width: (max:1000,min:100,interval:100)
 $paddings: (max:100,min:50,interval:10,min_pr:0,max_pr:50)
 $margins: (max:100,min:50,interval:10,min_pr:0,max_pr:50)
+$round: (max:50,min:0,interval:10,min_pr:0,max_pr:50)
 $gaps: (max:100,min:50,interval:10,min_pr:0,max_pr:10)
 $colors: (primary:#1c3d8dff)
+$borders: (max:10,min:0,interval:1)
 
 //Fuctions
 @function setFor($map,$mode)
@@ -16,12 +19,12 @@ $colors: (primary:#1c3d8dff)
         @if map.get($map,"interval")==0
             @return 0
         @else
-            @return ( map.get($map,"max")- map.get($map,"min"))/map.get($map,"interval")+1
+            @return ( map.get($map,"max")- map.get($map,"min"))/map.get($map,"interval")
     @else if $mode==2
         @return ( map.get($map,"max_pr")- map.get($map,"min_pr"))/5
 
 @function increment($var,$map)
-    @return $var*map.get($map,"interval")
+    @return map.get($map,"min")+$var*map.get($map,"interval")
 
 //Display 
 .inline-block
@@ -37,9 +40,9 @@ $colors: (primary:#1c3d8dff)
 
 //Sizes (width,heigth)
 
-@for $h from 1 through setFor($height,1)
+@for $h from 0 through setFor($height,1)
     $h:increment($h,$height)
-    @for $w from 1 through setFor($width,1)
+    @for $w from 0 through setFor($width,1)
         $w:increment($w,$width)
         .s-#{$w}-#{$h}-px
             width: #{$w} + 'px'
@@ -71,6 +74,12 @@ $colors: (primary:#1c3d8dff)
             .s-#{$w*10}-auto-pr
                 width: #{$w*10} + '%'
                 height: auto
+*
+    margin: 0
+    padding: 0
+
+body
+    border: 0
 
 .s-max-auto
     width: max-content
@@ -84,6 +93,13 @@ $colors: (primary:#1c3d8dff)
     width: fit-content
     height: auto
 
+.s-full-full
+    width: 100%
+    height: 100%
+
+.s-screen-screen
+    width: 100vw
+    height: 100vh
 //Flex box
 $flows: (row: r, row-reverse: rr, column: c, col-reverse: cr)
 $wrap: (wrap: w, nowrap: nw)
@@ -104,7 +120,7 @@ $position: (flex-start: s, center: c, flex-end: e)
                     
                 @for $gap from 1 through setFor($gaps,1)
                     $gap:increment($gap,$gaps)
-                    .flex-#{$f}-#{$w}-#{$j}#{$a}-#{$gap}
+                    .flex-#{$f}-#{$w}-#{$j}#{$a}-#{$gap}-px
                         display: flex
                         flex-direction: $flow
                         flex-wrap: $wrap
@@ -114,7 +130,7 @@ $position: (flex-start: s, center: c, flex-end: e)
 
                 @for $gap from 1 through setFor($gaps,2)
                     $gap:$gap*5
-                    .flex-#{$f}-#{$w}-#{$j}#{$a}-#{$gap}
+                    .flex-#{$f}-#{$w}-#{$j}#{$a}-#{$gap}-pr
                         display: flex
                         flex-direction: $flow
                         flex-wrap: $wrap
@@ -125,6 +141,8 @@ $position: (flex-start: s, center: c, flex-end: e)
 //Margin
 @for $m from 1 through setFor($margins,2)
     $m:$m*5
+    .m-#{$m}-pr
+        margin: #{$m}+'%'
     .ml-#{$m}-pr
         margin-left: #{$m}+'%'
     .mb-#{$m}-pr
@@ -140,6 +158,8 @@ $position: (flex-start: s, center: c, flex-end: e)
 @for $m from 1 through setFor($margins,1)
     $m:increment($m,$margins)
 
+    .m-#{$m}-px
+        margin: #{$m}+'px'
     .ml-#{$m}-px
         margin-left: #{$m}+'px'
     .mb-#{$m}-px
@@ -161,6 +181,8 @@ $position: (flex-start: s, center: c, flex-end: e)
 //Padding
 @for $p from 1 through setFor($paddings,2)
     $p:$p*5
+    .p-#{$p}-pr
+        padding: #{$p}+'%'
     .pl-#{$p}-pr
         padding-left: #{$p}+'%'
     .pb-#{$p}-pr
@@ -175,7 +197,8 @@ $position: (flex-start: s, center: c, flex-end: e)
 
 @for $p from 1 through setFor($paddings,1)
     $p:increment($p,$paddings)
-
+    .p-#{$p}-px
+        padding: #{$p}+'px'
     .pl-#{$p}-px
         padding-left: #{$p}+'px'
     .pb-#{$p}-px
@@ -205,7 +228,7 @@ $position: (flex-start: s, center: c, flex-end: e)
 .t-center
     text-align: center
     
-.t-rigth
+.t-right
     text-align: right
 
 .t-left
@@ -217,16 +240,108 @@ $position: (flex-start: s, center: c, flex-end: e)
 .t-bold
     font-weight: 900
 
+//Rounded
+@for $r from 1 through setFor($round,1)
+    $r:increment($r,$round)
+    .r-#{$r}-px
+        border-radius: #{$r}+"px"
+
+@for $r from 1 through setFor($round,2)
+    $r:$r*5
+    .r-#{$r}-pr
+        border-radius: #{$r}+"%"
+
+
+
+
 //Colors
 @each $name,$code in $colors
+    //Normilize
+    $code: color.change($code,$saturation:70)
+
+    $index:0
+
+    @for $l from 0 through 10
+        $index:$l
+        $l:20+$l*6
+        //Texts
+        .t-#{$name}-#{$index}
+            color: color.change($code,$lightness:$l)
+        //Background
+        .bg-#{$name}-#{$index}
+            background-color: color.change($code,$lightness:$l)
+        //Border
+        @for $w from 0 through setFor($borders,1)
+            .b-#{$name}-#{$index}-#{$w}
+                border-color: color.change($code,$lightness:$l)
+                border-width: #{$w}+"px"
+                border-style: solid
+        //Shadowbox
+        @for $g from 0 through 8
+            $g :$g *45
+            $x:0
+            $y:0
+            @if ($g > 270 and $g < 360) or ($g > 0 and $g < 90)
+                $x: "15px"
+            @else if $g < 270 and $g > 90
+                $x: "-15px"
+            @else 
+                $x:0
+
+            @if $g > 180 and $g < 360
+                $y: "15px"
+            @else if $g < 180 and $g > 0
+                $y: "-15px"
+            @else 
+                $y:0
+            
+            @for $blur from 0 through 10
+                $blur:$blur*5
+                .sh-#{$g}-#{$blur}-#{$name}-#{$index}
+                    box-shadow: #{$x} #{$y} #{$blur}px  0 $code
+
+@for $l from 0 through 10
+    $name: "gray"
+    $index:$l
+    $l:$l*10
+    $color: color.change(#FFFFFF,$lightness:$l)
     //Texts
-    .t-#{$name}
-        color: $code
+    .t-#{$name}-#{$index}
+        color: $color
     //Background
-    .bg-#{$name}
-        background-color: $code
+    .bg-#{$name}-#{$index}
+        background-color: $color
     //Border
-    .b-#{$name}
-        border-color: $code
+    .b-#{$name}-#{$index}
+        border-color: $color
+        @for $w from 0 through setFor($borders,1)
+            .b-#{$name}-#{$index}-#{$w}
+                border-color: $color
+                border-width: #{$w}+"px"
+                border-style: solid
+    //Shadowbox
+    //Shadowbox
+        @for $g from 0 through 8
+            $g :$g *45
+            $x:0
+            $y:0
+            @if ($g > 270 and $g < 360) or ($g > 0 and $g < 90)
+                $x: "15px"
+            @else if $g < 270 and $g > 90
+                $x: "-15px"
+            @else 
+                $x:0
+
+            @if $g > 180 and $g < 360
+                $y: "15px"
+            @else if $g < 180 and $g > 0
+                $y: "-15px"
+            @else 
+                $y:0
+            
+            @for $blur from 0 through 10
+                $blur:$blur*5
+                .sh-#{$g}-#{$blur}-#{$name}-#{$index}
+                    box-shadow: #{$x} #{$y} #{$blur}px  0 $color
 
 

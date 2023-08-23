@@ -36,17 +36,19 @@
                     </div>
                 </div>
                 <div>
-                    <span>Filtrar por:</span>
-                    <select name="" id="" placeholder="Categoría">
+                    <label for="filter">Filtrar por:</label>
+                    <select name="filter" id="filter" placeholder="Categoría">
 
                     </select>
                 </div>
                 <div>
-                    <span>Ordenar:</span>
-                    <select name="" id="" placeholder="Categoría">
-
+                    <label for="sort">Ordenar:</label>
+                    <select name="sort" id="sort" placeholder="Categoría">
+                        <option value="0" default>Aspecto de búsqueda</option>
                     </select>
-                    <button></button>
+                    <button>
+                        <img alt="sort_icon"/>
+                    </button>
                 </div>
             </div>
         </form>
