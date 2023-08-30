@@ -1,0 +1,7 @@
+public static function recuperarTodos(){
+    $conexion =new Conexion();
+    $consulta = $conexion->prepare('SELECT id,nombre,apellido FROM', self::TABLA,' ORDER BY nombre ASC');
+    $consulta->execute();
+    $registro = $consulta ->fetchAll();
+    return $registro;
+}
