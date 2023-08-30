@@ -9,7 +9,7 @@
 <body class="flex-c-nw-cc s-screen-screen bg-gray-10">
     <div class="sh-270-0-primary-6 p-10-px">
         <img class="block" alt="icon" src="./assets/img/icon.svg"/>
-        <form method="POST" action="">
+        <form method="POST" action="./scripts/validations/login.php">
             <h1>Iniciar sesión</h1>
             <label class="block">Correo</label>
             <input class="block" type="text"/>

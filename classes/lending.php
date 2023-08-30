@@ -17,7 +17,7 @@ class Lending{
 
     //Setters
     public function __set($propriety,$value){
-            $this->$propriety = $values;
+            $this->$propriety = $value;
     }
 
     public function setId($id){

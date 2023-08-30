@@ -6,7 +6,6 @@
     <title>BibloUE-Registro</title>
 </head>
 <body>
-    
     <div>
         <img class="block" alt="icon"/>
         <form method="POST" action="">
