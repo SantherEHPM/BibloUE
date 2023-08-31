@@ -6963,6 +6963,106 @@ body {
   padding-top: 50%;
 }
 
+.p-10-px {
+  padding: 10px;
+}
+
+.pl-10-px, .px-10-px {
+  padding-left: 10px;
+}
+
+.pb-10-px, .py-10-px {
+  padding-bottom: 10px;
+}
+
+.pr-10-px, .px-10-px {
+  padding-right: 10px;
+}
+
+.pt-10-px, .py-10-px {
+  padding-top: 10px;
+}
+
+.p-20-px {
+  padding: 20px;
+}
+
+.pl-20-px, .px-20-px {
+  padding-left: 20px;
+}
+
+.pb-20-px, .py-20-px {
+  padding-bottom: 20px;
+}
+
+.pr-20-px, .px-20-px {
+  padding-right: 20px;
+}
+
+.pt-20-px, .py-20-px {
+  padding-top: 20px;
+}
+
+.p-30-px {
+  padding: 30px;
+}
+
+.pl-30-px, .px-30-px {
+  padding-left: 30px;
+}
+
+.pb-30-px, .py-30-px {
+  padding-bottom: 30px;
+}
+
+.pr-30-px, .px-30-px {
+  padding-right: 30px;
+}
+
+.pt-30-px, .py-30-px {
+  padding-top: 30px;
+}
+
+.p-40-px {
+  padding: 40px;
+}
+
+.pl-40-px, .px-40-px {
+  padding-left: 40px;
+}
+
+.pb-40-px, .py-40-px {
+  padding-bottom: 40px;
+}
+
+.pr-40-px, .px-40-px {
+  padding-right: 40px;
+}
+
+.pt-40-px, .py-40-px {
+  padding-top: 40px;
+}
+
+.p-50-px {
+  padding: 50px;
+}
+
+.pl-50-px, .px-50-px {
+  padding-left: 50px;
+}
+
+.pb-50-px, .py-50-px {
+  padding-bottom: 50px;
+}
+
+.pr-50-px, .px-50-px {
+  padding-right: 50px;
+}
+
+.pt-50-px, .py-50-px {
+  padding-top: 50px;
+}
+
 .p-60-px {
   padding: 60px;
 }

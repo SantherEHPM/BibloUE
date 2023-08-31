@@ -6,9 +6,6 @@
     <title>Document</title>
 </head>
 <body>
-<?php
-    $dom = new DOMDocument();
-?>
     
 </body>
 </html>
