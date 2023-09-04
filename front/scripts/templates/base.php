@@ -1,5 +1,5 @@
 <?php
-    $root = '/BibloUE/';
+    $root = '/BibloUE/front/';
     function printHead($view){
         $root = $GLOBALS["root"];
         ?>

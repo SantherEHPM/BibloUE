@@ -15,9 +15,13 @@ class Conexion extends PDO{
             exit;
         }
     }
- /*
-    public static function get($table){
-        $query = $this->conexion->prepare('SELECT * FROM '.$table);
+    public static function get($table,$fields="*",$orderField="",$order=0){
+        $query = prepare('SELECT '.$fields.' FROM '.$table.' ORDER BY '.$orderField.($order)?('ASC'):('DESC'));
+        $query->execute();
+        return json_encode($query ->fetchAll());
+    }
+    /*public static function get($table,$fields="*"){
+        $query = prepare('SELECT '.$fields.' FROM '.$table);
         $query->execute();
         return json_encode($query ->fetchAll());
     }*/
