@@ -12,21 +12,26 @@ class Querier{
         })
     }
 
-    static pacman = ()=>{
-        alert(':v')
+    static pacman = async()=>{
+        this.response = (await axios.get(this.api,{
+            params:{
+                query:'pacman',
+                wea:':v'
+            }}
+        ))
     }
 
     static gettingApi = async(endpoint,params) => {
         params=Object.assign({},{query:endpoint})
-        this.response = (await axios.get(this.api),params)
+        this.response = (await axios.get(this.api,params))
         return this.response
     }
 
     
     static postingApi = async(endpoint,params) => {
         params=Object.assign(params,{query:endpoint})
-        this.response = (await axios.post(this.api),params)
-        console.error(this.response)
+        this.response = (await axios.get(this.api,{params}));
+        return (this.response)
     }
     
     static userSignUp = async(first_name,last_name,carnet,email,cellphone,password) =>{
@@ -38,7 +43,7 @@ class Querier{
             cellphone:cellphone,
             password:password
         }
-        return await this.postingApi('userSignUp',params)
+        console.log((await this.postingApi('userSignUp',params)).data)
     }
 }
 

@@ -11,12 +11,12 @@
     require('posts.php');
     require('puts.php');*/
     
-    echo ':v';
 
     if($_GET){
-    }
-    else if($_POST){
-        switch($_POST['query']){
+        switch($_GET['query']){
+            case 'pacman':
+                echo ':D';
+                break;
             case 'userSignUp':
                 $proprieties = array(
                     'first_name',
@@ -26,13 +26,12 @@
                     'cellphone',
                     'password'
                 );
-                $user = new User($proprieties,'POST');
-                echo ':v';
-                //$user.print();
+                //echo json_encode($proprieties);
+                $user = new User($proprieties,'GET');
+                echo ($user->getAll());
         }
     }
     /*else if($_PUT){
-
+        echo 'put';
     }*/
-
 ?>

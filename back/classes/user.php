@@ -13,10 +13,6 @@ class User extends Person{
         public function __construct($proprieties,$mode='All'){
                 $parentProps=array();
 
-                foreach($proprieties as $prop => $value){
-                        echo $prop.'=>'.$value; 
-                }
-
                 if($mode != 'All'){
                         foreach($proprieties as $prop){
                                 $match = false;
@@ -75,13 +71,15 @@ class User extends Person{
         }
 
         //Printer
-        public function print(){
-                echo 'id:'.$this->id;
-                echo 'first_name'.$this->first_name;
-                echo 'last_name'.$this->last_name;
-                echo 'carnet'.$this->carnet;
-                echo 'email'.$this->email;
-                echo 'cellphone'.$this->password;
+        public function getAll(){
+                $proprieties = array();
+                foreach(self::PROPRIETIES as $prop){
+                        $proprieties[$prop]=$this->$prop;
+                }
+                foreach(parent::PROPRIETIES as $prop){
+                        $proprieties[$prop]=$this->$prop;
+                }
+                return json_encode($proprieties);
         }
 
         //Save
