@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 class Querier{
     static api
@@ -6,20 +6,40 @@ class Querier{
     static response
 
     static {
-        this.api = "http://localhost/BibloUE/scripts/queryer.php?query=";
+        this.api = 'http://localhost/BibloUE/back/api/api.php'
         this.pageApi = axios.create({
             baseURL: this.api
         })
     }
 
-    static usingApi = async(endpoint) => {
-        this.response = (await axios.get(this.api+endpoint)).data
+    static pacman = ()=>{
+        alert(':v')
+    }
+
+    static gettingApi = async(endpoint,params) => {
+        params=Object.assign({},{query:endpoint})
+        this.response = (await axios.get(this.api),params)
         return this.response
     }
 
-    static getAdmins = async() =>{
-        return await this.usingApi("getAdmins");
+    
+    static postingApi = async(endpoint,params) => {
+        params=Object.assign(params,{query:endpoint})
+        this.response = (await axios.post(this.api),params)
+        console.error(this.response)
+    }
+    
+    static userSignUp = async(first_name,last_name,carnet,email,cellphone,password) =>{
+        let params = {
+            first_name:first_name,
+            last_name:last_name,
+            carnet:carnet,
+            email:email,
+            cellphone:cellphone,
+            password:password
+        }
+        return await this.postingApi('userSignUp',params)
     }
 }
 
-export {Querier};
+export {Querier}

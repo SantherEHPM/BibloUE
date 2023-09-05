@@ -73,6 +73,20 @@ class User extends Person{
                                 break;
                 }
         }
+
+        //Printer
+        public function print(){
+                echo 'id:'.$this->id;
+                echo 'first_name'.$this->first_name;
+                echo 'last_name'.$this->last_name;
+                echo 'carnet'.$this->carnet;
+                echo 'email'.$this->email;
+                echo 'cellphone'.$this->password;
+        }
+
+        //Save
+
+
         //Takers
         //POST
         public function takePost($propriety){
