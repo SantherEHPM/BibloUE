@@ -3,11 +3,10 @@
 <?php 
 include("./front/scripts/templates/base.php"); 
 printHead('Inicio');
-
 ?>
 <body class="flex-c-nw-cc s-screen-screen bg-gray-10">
     <div class="sh-270-0-primary-6 b-primary-9-2 p-10-px">
-        <img class="block" alt="icon" src="./assets/img/icon.svg"/>
+        <img class="block" alt="icon" src="<?php echo $root ?>assets/img/icon.svg"/>
         <form method="post" action="<?php echo $root?>post.php" id="login">
             <h1>Iniciar sesión</h1>
             <label class="block">Correo</label>

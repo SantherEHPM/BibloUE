@@ -1,4 +1,5 @@
-import {Querier} from './Querier.js'
+import {Querier} from '../Querier.js'
+import {navigate} from '../Navigator.js'
 
 const form = document.querySelector('form')
 const inputs = form.querySelectorAll('input')
@@ -15,6 +16,8 @@ const userSignUpHandler = (e) =>{
     let cellphone = form.querySelector('#cellphone').value
     let password = form.querySelector('#password').value
     let c_password = form.querySelector('#c_password').value
-    Querier.userSignUp(first_name,last_name,carnet,email,cellphone,password)
+    Querier.pacman()
+    //Querier.userSignUp(first_name,last_name,carnet,email,cellphone,password)
+    //navigate('booksearch','user')
 }
 

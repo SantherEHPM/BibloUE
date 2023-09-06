@@ -7190,7 +7190,7 @@ body {
   font-weight: 900;
 }
 
-.r-10-px, input {
+.r-10-px {
   border-radius: 10px;
 }
 
@@ -9134,7 +9134,7 @@ body {
   color: #2250bf;
 }
 
-.bg-primary-4, input {
+.bg-primary-4 {
   background-color: #2250bf;
 }
 

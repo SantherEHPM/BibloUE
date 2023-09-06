@@ -13,12 +13,38 @@ class Querier{
     }
 
     static pacman = async()=>{
-        this.response = (await axios.get(this.api,{
-            params:{
-                query:'pacman',
+        // $.post(this.api,{wea:':v'},(data)=>{
+        //     if(data!=null){
+        //         console.info(data)
+        //     }
+        //     else{
+        //         console.error('ta mal')
+        //     }
+        // })
+        /*let data = new FormData()
+        data.append("wea", ":v")
+
+        fetch(this.api,{
+            method:'POST',
+            body:data
+        }).then(datos=>datos.json)
+        .then(masdatos=>{
+            console.log(masdatos)
+        })*/
+        /*axios.post(this.api,
+            {
                 wea:':v'
-            }}
-        ))
+            }
+        ).then((res)=>{
+            console.warn(res)
+        })
+        console.log(this.response)*/
+        // let data = new FormData()
+        // data.append("wea", ":v")
+
+        // const request = new XMLHttpRequest();
+        // request.open("POST", this.api);
+        // request.send(data);
     }
 
     static gettingApi = async(endpoint,params) => {

@@ -7,7 +7,7 @@ printHead('Sign Up-BiblioUE');
 <body>
     <div>
         <img class="block" alt="icon"/>
-        <form method="GET" action="registrator.php">
+        <form method="GET" action="">
             <h2>Registro</h2>
             <label class="block" for="first_name">Nombres</label>
             <input class="block" type="text" name="first_name" id="first_name" placeholder="Nombres"/>
