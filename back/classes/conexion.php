@@ -16,7 +16,7 @@ class Conexion extends PDO{
         }
     }
     public static function get($table,$fields="*",$orderField="",$order=0){
-        $query = prepare('SELECT '.$fields.' FROM '.$table.' ORDER BY '.$orderField.($order)?('ASC'):('DESC'));
+        $query = parent::prepare('SELECT '.$fields.' FROM '.$table.' ORDER BY '.$orderField.($order)?('ASC'):('DESC'));
         $query->execute();
         return json_encode($query ->fetchAll());
     }

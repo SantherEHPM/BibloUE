@@ -2,16 +2,8 @@
 @use "sass:string"
 @use "sass:map"
 @use "sass:color"
+@import "config"
 
-//Config
-$height: (max:1000,min:100,interval:100)
-$width: (max:1000,min:100,interval:100)
-$paddings: (max:100,min:0,interval:10,min_pr:0,max_pr:50)
-$margins: (max:100,min:50,interval:10,min_pr:0,max_pr:50)
-$round: (max:50,min:0,interval:10,min_pr:0,max_pr:50)
-$gaps: (max:100,min:50,interval:10,min_pr:0,max_pr:10)
-$colors: (primary:#1c3d8dff)
-$borders: (max:10,min:0,interval:1)
 
 //Fuctions
 @function setFor($map,$mode)
@@ -27,7 +19,7 @@ $borders: (max:10,min:0,interval:1)
     @return map.get($map,"min")+$var*map.get($map,"interval")
 
 //Display 
-.inline-block
+@mixin inline-block
     display: inline-block
     box-sizing: border-box
 .inline
@@ -90,6 +82,7 @@ body
     height: auto
 
 .s-fit-auto
+    width: -moz-fit-content
     width: fit-content
     height: auto
 

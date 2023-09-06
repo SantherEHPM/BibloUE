@@ -13,7 +13,7 @@ class Person{
                 switch($mode){
                         case 'All':
                                 foreach($proprieties as $prop => $value){
-                                        $this->$prop = $values;
+                                        $this->$prop = $value;
                                 }
                                 break;
                         case 'POST':
@@ -26,11 +26,11 @@ class Person{
                                         $this->takeGet($prop);
                                 }
                                 break;
-                        case 'PUT':
+                        /*case 'PUT':
                                 foreach($proprieties as $prop){
                                         $this->takePut($prop);
                                 }
-                                break;
+                                break;*/
                 }
         }
         //Takers
@@ -47,14 +47,14 @@ class Person{
                 }
         }
         //PUT
-        public function takePut($propriety){
+        /*public function takePut($propriety){
                 if($_PUT){
                         $this->$propriety = $_PUT[$propriety];
                 }
-        }
+        }*/
         //Setters
         public function __set($propriety,$value){
-                $this->$propriety = $values;
+                $this->$propriety = $value;
         }
 
         public function setId($id){

@@ -49,7 +49,7 @@ class User extends Person{
                 switch($mode){
                         case 'All':
                                 foreach($proprieties as $prop => $value){
-                                        $this->$prop = $values;
+                                        $this->$prop = $value;
                                 }
                                 break;
                         case 'POST':
@@ -73,13 +73,17 @@ class User extends Person{
         //Printer
         public function getAll(){
                 $proprieties = array();
+                $string = '';
                 foreach(self::PROPRIETIES as $prop){
                         $proprieties[$prop]=$this->$prop;
+                        $string=$string.$this->$prop.' ';
                 }
                 foreach(parent::PROPRIETIES as $prop){
                         $proprieties[$prop]=$this->$prop;
+                        $string=$string.$this->$prop.' ';
                 }
-                return json_encode($proprieties);
+                //return json_encode($proprieties);
+                return ($string);
         }
 
         //Save
@@ -99,14 +103,14 @@ class User extends Person{
                 }
         }
         //PUT
-        public function takePut($propriety){
+        /*public function takePut($propriety){
                 if($_PUT){
                         $this->$propriety = $_PUT[$propriety];
                 }
-        }
+        }*/
         //Setters
         public function __set($propriety,$value){
-                $this->$propriety = $values;
+                $this->$propriety = $value;
         }
 
         public function setCarnet($carnet){
