@@ -1,5 +1,12 @@
+
+.reset{
+  margin: 0;
+  border: 0;
+  padding: 0;
+}
+
 .inline {
-  display: inline;
+  display: inline-block;
   box-sizing: border-box;
 }
 
