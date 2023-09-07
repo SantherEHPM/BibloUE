@@ -17,7 +17,7 @@ const userSignUpHandler = (e) =>{
     let password = form.querySelector('#password').value
     let c_password = form.querySelector('#c_password').value
     Querier.pacman()
-    //Querier.userSignUp(first_name,last_name,carnet,email,cellphone,password)
+    Querier.userSignUp(first_name,last_name,carnet,email,cellphone,password)
     //navigate('booksearch','user')
 }
 

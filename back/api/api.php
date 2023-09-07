@@ -11,8 +11,9 @@
     require('posts.php');
     require('puts.php');*/
     
-    //var_dump($_POST);
+    
 
+    //var_dump($_GET);
 
     if($_POST){
         if($_POST['wea']==':v'){
@@ -36,7 +37,7 @@
                 );
                 //echo json_encode($proprieties);
                 $user = new User($proprieties,'GET');
-                //echo ($user->getAll());
+                echo ($user->getAll());
         }
     }
     /*else if($_PUT){
